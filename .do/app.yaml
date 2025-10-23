@@ -1,0 +1,59 @@
+name: admin-panel
+region: nyc
+services:
+  - name: backend
+    github:
+      repo: somkheartk/nextjs-tailwincss-mui-nestjs
+      branch: main
+      deploy_on_push: true
+    build_command: cd backend && npm install && npm run build
+    run_command: cd backend && node dist/main
+    http_port: 3000
+    instance_count: 1
+    instance_size_slug: basic-xs
+    envs:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: "3000"
+      - key: JWT_SECRET
+        type: SECRET
+        value: your-secret-key-change-this
+      - key: MONGODB_URI
+        type: SECRET
+        value: ${db.DATABASE_URL}
+      - key: FRONTEND_URL
+        value: ${frontend.PUBLIC_URL}
+    routes:
+      - path: /api
+    health_check:
+      http_path: /
+
+  - name: frontend
+    github:
+      repo: somkheartk/nextjs-tailwincss-mui-nestjs
+      branch: main
+      deploy_on_push: true
+    build_command: cd frontend && npm install && npm run build
+    run_command: cd frontend && node .next/standalone/server.js
+    http_port: 3001
+    instance_count: 1
+    instance_size_slug: basic-xs
+    envs:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: "3001"
+      - key: NEXT_PUBLIC_API_URL
+        value: ${backend.PUBLIC_URL}
+    routes:
+      - path: /
+    health_check:
+      http_path: /
+
+databases:
+  - name: db
+    engine: MONGODB
+    version: "7"
+    production: false
+    cluster_name: admin-panel-db
