@@ -1,5 +1,12 @@
 # Admin Panel - Next.js + TailwindCSS + MUI + NestJS + MongoDB
 
+![Next.js](https://img.shields.io/badge/Next.js-16-black)
+![NestJS](https://img.shields.io/badge/NestJS-11-E0234E)
+![MongoDB](https://img.shields.io/badge/MongoDB-7-47A248)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.7-3178C6)
+![License](https://img.shields.io/badge/License-MIT-green)
+![Docker](https://img.shields.io/badge/Docker-Ready-2496ED)
+
 A modern, full-stack admin panel built with Next.js, TailwindCSS, Material-UI (MUI), NestJS, and MongoDB.
 
 ## 🚀 Features
@@ -240,6 +247,14 @@ NEXT_PUBLIC_API_URL=http://localhost:3000
 - `POST /users` - Create new user
 - `PATCH /users/:id` - Update user
 - `DELETE /users/:id` - Delete user
+
+## 📖 Documentation
+
+- **[Architecture Guide](ARCHITECTURE.md)** - System architecture and data flow
+- **[Deployment Guide](DEPLOY.md)** - Detailed deployment instructions for Digital Ocean
+- **[Contributing Guide](CONTRIBUTING.md)** - How to contribute to this project
+- **[FAQ](FAQ.md)** - Frequently asked questions
+- **[Screenshots](SCREENSHOTS.md)** - Application screenshots and features
 
 ## 🧪 Testing
 
