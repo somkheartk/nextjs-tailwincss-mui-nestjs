@@ -20,6 +20,26 @@ A modern, full-stack admin panel built with Next.js, TailwindCSS, Material-UI (M
 
 ## 🏃 Quick Start
 
+### Quick Start with Script
+
+The fastest way to get started:
+
+```bash
+git clone https://github.com/somkheartk/nextjs-tailwincss-mui-nestjs.git
+cd nextjs-tailwincss-mui-nestjs
+./start.sh
+```
+
+This will:
+1. Create necessary environment files
+2. Start all services with Docker Compose
+3. Seed the database with demo users
+4. Display access URLs and credentials
+
+### Manual Setup
+
+If you prefer to set up manually, follow these steps:
+
 ### Local Development
 
 1. **Clone the repository**

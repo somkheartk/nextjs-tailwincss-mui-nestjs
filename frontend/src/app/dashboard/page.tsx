@@ -11,7 +11,6 @@ import {
   Button,
   Container,
   Paper,
-  Grid,
   Card,
   CardContent,
 } from '@mui/material';
@@ -57,52 +56,46 @@ export default function DashboardPage() {
           Welcome, {user.name}!
         </Typography>
         
-        <Grid container spacing={3} sx={{ mt: 2 }}>
-          <Grid item xs={12} md={4}>
-            <Card>
-              <CardContent>
-                <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-                  <DashboardIcon sx={{ fontSize: 40, mr: 2, color: 'primary.main' }} />
-                  <Typography variant="h6">Dashboard</Typography>
-                </Box>
-                <Typography color="text.secondary">
-                  View system overview and analytics
-                </Typography>
-              </CardContent>
-            </Card>
-          </Grid>
+        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 3, mt: 3 }}>
+          <Card sx={{ flex: '1 1 300px', minWidth: 300 }}>
+            <CardContent>
+              <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+                <DashboardIcon sx={{ fontSize: 40, mr: 2, color: 'primary.main' }} />
+                <Typography variant="h6">Dashboard</Typography>
+              </Box>
+              <Typography color="text.secondary">
+                View system overview and analytics
+              </Typography>
+            </CardContent>
+          </Card>
 
-          <Grid item xs={12} md={4}>
-            <Card
-              sx={{ cursor: 'pointer' }}
-              onClick={() => router.push('/users')}
-            >
-              <CardContent>
-                <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-                  <PeopleIcon sx={{ fontSize: 40, mr: 2, color: 'success.main' }} />
-                  <Typography variant="h6">Users</Typography>
-                </Box>
-                <Typography color="text.secondary">
-                  Manage user accounts and permissions
-                </Typography>
-              </CardContent>
-            </Card>
-          </Grid>
+          <Card
+            sx={{ flex: '1 1 300px', minWidth: 300, cursor: 'pointer' }}
+            onClick={() => router.push('/users')}
+          >
+            <CardContent>
+              <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+                <PeopleIcon sx={{ fontSize: 40, mr: 2, color: 'success.main' }} />
+                <Typography variant="h6">Users</Typography>
+              </Box>
+              <Typography color="text.secondary">
+                Manage user accounts and permissions
+              </Typography>
+            </CardContent>
+          </Card>
 
-          <Grid item xs={12} md={4}>
-            <Card>
-              <CardContent>
-                <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-                  <SettingsIcon sx={{ fontSize: 40, mr: 2, color: 'warning.main' }} />
-                  <Typography variant="h6">Settings</Typography>
-                </Box>
-                <Typography color="text.secondary">
-                  Configure system settings
-                </Typography>
-              </CardContent>
-            </Card>
-          </Grid>
-        </Grid>
+          <Card sx={{ flex: '1 1 300px', minWidth: 300 }}>
+            <CardContent>
+              <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+                <SettingsIcon sx={{ fontSize: 40, mr: 2, color: 'warning.main' }} />
+                <Typography variant="h6">Settings</Typography>
+              </Box>
+              <Typography color="text.secondary">
+                Configure system settings
+              </Typography>
+            </CardContent>
+          </Card>
+        </Box>
 
         <Paper sx={{ p: 3, mt: 4 }}>
           <Typography variant="h6" gutterBottom>
