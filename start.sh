@@ -15,11 +15,17 @@ if ! command -v docker &> /dev/null; then
     exit 1
 fi
 
-# Check if Docker Compose is installed
-if ! command -v docker-compose &> /dev/null; then
+# Check if Docker Compose is installed (try both v1 and v2)
+if command -v docker-compose &> /dev/null; then
+    DOCKER_COMPOSE="docker-compose"
+elif docker compose version &> /dev/null; then
+    DOCKER_COMPOSE="docker compose"
+else
     echo "❌ Docker Compose is not installed. Please install Docker Compose first."
     exit 1
 fi
+
+echo "Using: $DOCKER_COMPOSE"
 
 # Create environment files if they don't exist
 if [ ! -f backend/.env ]; then
@@ -34,7 +40,7 @@ fi
 
 # Start services
 echo "🐳 Starting Docker containers..."
-docker-compose up -d
+$DOCKER_COMPOSE up -d
 
 # Wait for services to be ready
 echo "⏳ Waiting for services to start..."
@@ -45,7 +51,7 @@ if docker ps | grep -q admin_panel_backend; then
     echo "✅ Backend is running"
 else
     echo "❌ Backend failed to start"
-    docker-compose logs backend
+    $DOCKER_COMPOSE logs backend
     exit 1
 fi
 
@@ -53,7 +59,7 @@ if docker ps | grep -q admin_panel_frontend; then
     echo "✅ Frontend is running"
 else
     echo "❌ Frontend failed to start"
-    docker-compose logs frontend
+    $DOCKER_COMPOSE logs frontend
     exit 1
 fi
 
@@ -61,7 +67,7 @@ if docker ps | grep -q admin_panel_mongodb; then
     echo "✅ MongoDB is running"
 else
     echo "❌ MongoDB failed to start"
-    docker-compose logs mongodb
+    $DOCKER_COMPOSE logs mongodb
     exit 1
 fi
 
@@ -89,7 +95,7 @@ echo ""
 echo "⚠️  Please change these passwords after first login!"
 echo ""
 echo "📚 Commands:"
-echo "   Stop:    docker-compose down"
-echo "   Logs:    docker-compose logs -f"
-echo "   Restart: docker-compose restart"
+echo "   Stop:    $DOCKER_COMPOSE down"
+echo "   Logs:    $DOCKER_COMPOSE logs -f"
+echo "   Restart: $DOCKER_COMPOSE restart"
 echo ""
